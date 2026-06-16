@@ -1,0 +1,730 @@
+{
+  "title": "RHRS 易致災因果知識圖譜",
+  "description": "RHRS易致災因果知識圖譜。nodes為實體，edges為帶語意關係。relation類型：contains(層級包含)、triggers(觸發×)、amplifies(放大→)、mitigates(折減÷)、measured_by(由表單欄位量測)、sourced_from(來源表單)。",
+  "formula": "殘餘風險 = (A 潛勢 × B 觸發) × C 後果暴露 ÷ D 防護",
+  "formSchemaSummary": "以RHRS易致災評估因子(A/B/C/D)為因果分層骨架，對應四張現場檢測表單之所有欄位。value一律留空，供填寫；options列出表單可勾選項。",
+  "rootNodeId": "RISK",
+  "nodes": [
+    {
+      "id": "RISK",
+      "label": "殘餘風險",
+      "type": "outcome",
+      "typeLabel": "殘餘風險",
+      "layer": 1,
+      "summary": "殘餘風險：殘餘風險",
+      "originalText": "{\n  \"id\": \"RISK\",\n  \"label\": \"殘餘風險\",\n  \"type\": \"outcome\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "EVENT",
+      "label": "邊坡失穩事件",
+      "type": "event",
+      "typeLabel": "失穩事件",
+      "layer": 1,
+      "summary": "失穩事件：邊坡失穩事件",
+      "originalText": "{\n  \"id\": \"EVENT\",\n  \"label\": \"邊坡失穩事件\",\n  \"type\": \"event\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "A",
+      "label": "邊坡本體潛勢條件",
+      "type": "factor_group",
+      "typeLabel": "因果群組",
+      "layer": 2,
+      "role": "潛勢(內在條件)",
+      "summary": "潛勢(內在條件)；對應：脆弱度",
+      "originalText": "{\n  \"id\": \"A\",\n  \"label\": \"邊坡本體潛勢條件\",\n  \"type\": \"factor_group\",\n  \"role\": \"潛勢(內在條件)\",\n  \"對應\": \"脆弱度\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "B",
+      "label": "氣象誘發因子",
+      "type": "factor_group",
+      "typeLabel": "因果群組",
+      "layer": 2,
+      "role": "觸發(外在扳機)",
+      "summary": "觸發(外在扳機)；對應：觸發條件",
+      "originalText": "{\n  \"id\": \"B\",\n  \"label\": \"氣象誘發因子\",\n  \"type\": \"factor_group\",\n  \"role\": \"觸發(外在扳機)\",\n  \"對應\": \"觸發條件\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "C",
+      "label": "歷史規模與交通暴露",
+      "type": "factor_group",
+      "typeLabel": "因果群組",
+      "layer": 2,
+      "role": "後果(放大器)",
+      "summary": "後果(放大器)；對應：發生率×暴露度",
+      "originalText": "{\n  \"id\": \"C\",\n  \"label\": \"歷史規模與交通暴露\",\n  \"type\": \"factor_group\",\n  \"role\": \"後果(放大器)\",\n  \"對應\": \"發生率×暴露度\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "D",
+      "label": "現有防護設施加權",
+      "type": "factor_group",
+      "typeLabel": "因果群組",
+      "layer": 2,
+      "role": "折減(負回饋)",
+      "summary": "折減(負回饋)；對應：風險折減",
+      "originalText": "{\n  \"id\": \"D\",\n  \"label\": \"現有防護設施加權\",\n  \"type\": \"factor_group\",\n  \"role\": \"折減(負回饋)\",\n  \"對應\": \"風險折減\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "A1",
+      "label": "地形特徵",
+      "type": "factor",
+      "typeLabel": "評估因子",
+      "layer": 2,
+      "summary": "取值法：取平均",
+      "originalText": "{\n  \"id\": \"A1\",\n  \"label\": \"地形特徵\",\n  \"type\": \"factor\",\n  \"取值法\": \"取平均\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "A2",
+      "label": "地質狀況",
+      "type": "factor",
+      "typeLabel": "評估因子",
+      "layer": 2,
+      "summary": "取值法：取大值",
+      "originalText": "{\n  \"id\": \"A2\",\n  \"label\": \"地質狀況\",\n  \"type\": \"factor\",\n  \"取值法\": \"取大值\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "A3",
+      "label": "邊坡植被及水流狀況",
+      "type": "factor",
+      "typeLabel": "評估因子",
+      "layer": 2,
+      "summary": "取值法：取大值",
+      "originalText": "{\n  \"id\": \"A3\",\n  \"label\": \"邊坡植被及水流狀況\",\n  \"type\": \"factor\",\n  \"取值法\": \"取大值\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "B1",
+      "label": "氣象加權",
+      "type": "factor",
+      "typeLabel": "評估因子",
+      "layer": 2,
+      "summary": "取值法：加權係數",
+      "originalText": "{\n  \"id\": \"B1\",\n  \"label\": \"氣象加權\",\n  \"type\": \"factor\",\n  \"取值法\": \"加權係數\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "C1",
+      "label": "近三年落石坍方歷史",
+      "type": "factor",
+      "typeLabel": "評估因子",
+      "layer": 2,
+      "summary": "取值法：取大值",
+      "originalText": "{\n  \"id\": \"C1\",\n  \"label\": \"近三年落石坍方歷史\",\n  \"type\": \"factor\",\n  \"取值法\": \"取大值\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "C2",
+      "label": "落石尺寸坍方規模",
+      "type": "factor",
+      "typeLabel": "評估因子",
+      "layer": 2,
+      "summary": "取值法：取大值",
+      "originalText": "{\n  \"id\": \"C2\",\n  \"label\": \"落石尺寸坍方規模\",\n  \"type\": \"factor\",\n  \"取值法\": \"取大值\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "C3",
+      "label": "交通流量狀況",
+      "type": "factor",
+      "typeLabel": "評估因子",
+      "layer": 2,
+      "summary": "評估因子：交通流量狀況",
+      "originalText": "{\n  \"id\": \"C3\",\n  \"label\": \"交通流量狀況\",\n  \"type\": \"factor\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "C4",
+      "label": "道路寬度及墾地有無",
+      "type": "factor",
+      "typeLabel": "評估因子",
+      "layer": 2,
+      "summary": "取值法：取平均",
+      "originalText": "{\n  \"id\": \"C4\",\n  \"label\": \"道路寬度及墾地有無\",\n  \"type\": \"factor\",\n  \"取值法\": \"取平均\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "C5",
+      "label": "區域聯外交通影響",
+      "type": "factor",
+      "typeLabel": "評估因子",
+      "layer": 2,
+      "summary": "評估因子：區域聯外交通影響",
+      "originalText": "{\n  \"id\": \"C5\",\n  \"label\": \"區域聯外交通影響\",\n  \"type\": \"factor\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "D1",
+      "label": "防護設施成效",
+      "type": "factor",
+      "typeLabel": "評估因子",
+      "layer": 2,
+      "summary": "取值法：加權係數",
+      "originalText": "{\n  \"id\": \"D1\",\n  \"label\": \"防護設施成效\",\n  \"type\": \"factor\",\n  \"取值法\": \"加權係數\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
+    },
+    {
+      "id": "F_A31",
+      "label": "表A3-1 自然邊坡特別檢測表",
+      "type": "form",
+      "typeLabel": "來源表單",
+      "layer": 3,
+      "summary": "來源表單：表A3-1 自然邊坡特別檢測表",
+      "originalText": "{\n  \"id\": \"F_A31\",\n  \"label\": \"表A3-1 自然邊坡特別檢測表\",\n  \"type\": \"form\"\n}",
+      "sourcePdf": "18616_台2線易致災.pdf",
+      "sourcePdfUrl": "/pdfs/18616_台2線易致災.pdf"
+    },
+    {
+      "id": "F_A34",
+      "label": "表A3-4 噴凝土護坡設施檢測表",
+      "type": "form",
+      "typeLabel": "來源表單",
+      "layer": 3,
+      "summary": "來源表單：表A3-4 噴凝土護坡設施檢測表",
+      "originalText": "{\n  \"id\": \"F_A34\",\n  \"label\": \"表A3-4 噴凝土護坡設施檢測表\",\n  \"type\": \"form\"\n}",
+      "sourcePdf": "18616_台2線易致災.pdf",
+      "sourcePdfUrl": "/pdfs/18616_台2線易致災.pdf"
+    },
+    {
+      "id": "F_A35",
+      "label": "表A3-5 混凝土格框格子梁護坡檢測表",
+      "type": "form",
+      "typeLabel": "來源表單",
+      "layer": 3,
+      "summary": "來源表單：表A3-5 混凝土格框格子梁護坡檢測表",
+      "originalText": "{\n  \"id\": \"F_A35\",\n  \"label\": \"表A3-5 混凝土格框格子梁護坡檢測表\",\n  \"type\": \"form\"\n}",
+      "sourcePdf": "18616_台2線易致災.pdf",
+      "sourcePdfUrl": "/pdfs/18616_台2線易致災.pdf"
+    },
+    {
+      "id": "F_A310",
+      "label": "表A3-10 圖片說明表",
+      "type": "form",
+      "typeLabel": "來源表單",
+      "layer": 3,
+      "summary": "來源表單：表A3-10 圖片說明表",
+      "originalText": "{\n  \"id\": \"F_A310\",\n  \"label\": \"表A3-10 圖片說明表\",\n  \"type\": \"form\"\n}",
+      "sourcePdf": "18616_台2線易致災.pdf",
+      "sourcePdfUrl": "/pdfs/18616_台2線易致災.pdf"
+    },
+    {
+      "id": "FLD_地質類型",
+      "label": "地質類型(土/岩/礫石)",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：地質類型(土/岩/礫石)",
+      "originalText": "{\n  \"id\": \"FLD_地質類型\",\n  \"label\": \"地質類型(土/岩/礫石)\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_坡高",
+      "label": "坡高",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：坡高",
+      "originalText": "{\n  \"id\": \"FLD_坡高\",\n  \"label\": \"坡高\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_坡度",
+      "label": "坡度",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：坡度",
+      "originalText": "{\n  \"id\": \"FLD_坡度\",\n  \"label\": \"坡度\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_邊坡面寬",
+      "label": "邊坡面寬",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：邊坡面寬",
+      "originalText": "{\n  \"id\": \"FLD_邊坡面寬\",\n  \"label\": \"邊坡面寬\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_坡型",
+      "label": "坡型",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：坡型",
+      "originalText": "{\n  \"id\": \"FLD_坡型\",\n  \"label\": \"坡型\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_岩性",
+      "label": "岩性/不連續面/順逆向",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：岩性/不連續面/順逆向",
+      "originalText": "{\n  \"id\": \"FLD_岩性\",\n  \"label\": \"岩性/不連續面/順逆向\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_植被覆蓋",
+      "label": "植被覆蓋率",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：植被覆蓋率",
+      "originalText": "{\n  \"id\": \"FLD_植被覆蓋\",\n  \"label\": \"植被覆蓋率\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_地下水",
+      "label": "地下水/湧水狀況",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：地下水/湧水狀況",
+      "originalText": "{\n  \"id\": \"FLD_地下水\",\n  \"label\": \"地下水/湧水狀況\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_排洩水管",
+      "label": "排洩水管(正常/阻塞)",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：排洩水管(正常/阻塞)",
+      "originalText": "{\n  \"id\": \"FLD_排洩水管\",\n  \"label\": \"排洩水管(正常/阻塞)\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_天氣",
+      "label": "天氣/坡面乾濕",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：天氣/坡面乾濕",
+      "originalText": "{\n  \"id\": \"FLD_天氣\",\n  \"label\": \"天氣/坡面乾濕\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_降雨",
+      "label": "降雨量/降雨後日數",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：降雨量/降雨後日數",
+      "originalText": "{\n  \"id\": \"FLD_降雨\",\n  \"label\": \"降雨量/降雨後日數\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_以往災害",
+      "label": "以往災害(無/有)",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：以往災害(無/有)",
+      "originalText": "{\n  \"id\": \"FLD_以往災害\",\n  \"label\": \"以往災害(無/有)\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_鄰近災害",
+      "label": "鄰近災害(無/有)",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：鄰近災害(無/有)",
+      "originalText": "{\n  \"id\": \"FLD_鄰近災害\",\n  \"label\": \"鄰近災害(無/有)\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_崩落物料",
+      "label": "潛在崩落物料/落石尺寸",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：潛在崩落物料/落石尺寸",
+      "originalText": "{\n  \"id\": \"FLD_崩落物料\",\n  \"label\": \"潛在崩落物料/落石尺寸\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_交通量",
+      "label": "日平均交通量PCU/車種",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：日平均交通量PCU/車種",
+      "originalText": "{\n  \"id\": \"FLD_交通量\",\n  \"label\": \"日平均交通量PCU/車種\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_道路寬度",
+      "label": "道路寬度/墾地/應變視距",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：道路寬度/墾地/應變視距",
+      "originalText": "{\n  \"id\": \"FLD_道路寬度\",\n  \"label\": \"道路寬度/墾地/應變視距\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_聯外",
+      "label": "聯外道路/替代道路",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：聯外道路/替代道路",
+      "originalText": "{\n  \"id\": \"FLD_聯外\",\n  \"label\": \"聯外道路/替代道路\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_監測系統",
+      "label": "監測系統/監測情形",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：監測系統/監測情形",
+      "originalText": "{\n  \"id\": \"FLD_監測系統\",\n  \"label\": \"監測系統/監測情形\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_設施檢查",
+      "label": "設施檢查項目(A3-1/4/5)",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：設施檢查項目(A3-1/4/5)",
+      "originalText": "{\n  \"id\": \"FLD_設施檢查\",\n  \"label\": \"設施檢查項目(A3-1/4/5)\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    },
+    {
+      "id": "FLD_圖片",
+      "label": "現場記錄圖片",
+      "type": "field",
+      "typeLabel": "表單欄位",
+      "layer": 3,
+      "summary": "表單欄位：現場記錄圖片",
+      "originalText": "{\n  \"id\": \"FLD_圖片\",\n  \"label\": \"現場記錄圖片\",\n  \"type\": \"field\"\n}",
+      "sourcePdf": "台2線70k+000~70k+350_表單架構.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "rhrs-edge-1",
+      "from": "A",
+      "to": "EVENT",
+      "relation": "triggers",
+      "type": "觸發 ×",
+      "operator": "×",
+      "note": "A潛勢與B觸發須同時成立才失穩"
+    },
+    {
+      "id": "rhrs-edge-2",
+      "from": "B",
+      "to": "EVENT",
+      "relation": "triggers",
+      "type": "觸發 ×",
+      "operator": "×",
+      "note": "豪雨扣下扳機，把A潛能轉為運動"
+    },
+    {
+      "id": "rhrs-edge-3",
+      "from": "EVENT",
+      "to": "C",
+      "relation": "amplifies",
+      "type": "放大 →",
+      "operator": "→",
+      "note": "事件發生後由C決定後果規模"
+    },
+    {
+      "id": "rhrs-edge-4",
+      "from": "C",
+      "to": "RISK",
+      "relation": "amplifies",
+      "type": "放大 ×",
+      "operator": "×"
+    },
+    {
+      "id": "rhrs-edge-5",
+      "from": "D",
+      "to": "RISK",
+      "relation": "mitigates",
+      "type": "折減 ÷",
+      "operator": "÷",
+      "note": "防護工程折減殘餘風險，不改變A地質本體"
+    },
+    {
+      "id": "rhrs-edge-6",
+      "from": "A",
+      "to": "A1",
+      "relation": "contains",
+      "type": "包含"
+    },
+    {
+      "id": "rhrs-edge-7",
+      "from": "A",
+      "to": "A2",
+      "relation": "contains",
+      "type": "包含"
+    },
+    {
+      "id": "rhrs-edge-8",
+      "from": "A",
+      "to": "A3",
+      "relation": "contains",
+      "type": "包含"
+    },
+    {
+      "id": "rhrs-edge-9",
+      "from": "B",
+      "to": "B1",
+      "relation": "contains",
+      "type": "包含"
+    },
+    {
+      "id": "rhrs-edge-10",
+      "from": "C",
+      "to": "C1",
+      "relation": "contains",
+      "type": "包含"
+    },
+    {
+      "id": "rhrs-edge-11",
+      "from": "C",
+      "to": "C2",
+      "relation": "contains",
+      "type": "包含"
+    },
+    {
+      "id": "rhrs-edge-12",
+      "from": "C",
+      "to": "C3",
+      "relation": "contains",
+      "type": "包含"
+    },
+    {
+      "id": "rhrs-edge-13",
+      "from": "C",
+      "to": "C4",
+      "relation": "contains",
+      "type": "包含"
+    },
+    {
+      "id": "rhrs-edge-14",
+      "from": "C",
+      "to": "C5",
+      "relation": "contains",
+      "type": "包含"
+    },
+    {
+      "id": "rhrs-edge-15",
+      "from": "D",
+      "to": "D1",
+      "relation": "contains",
+      "type": "包含"
+    },
+    {
+      "id": "rhrs-edge-16",
+      "from": "A1",
+      "to": "FLD_地質類型",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-17",
+      "from": "A1",
+      "to": "FLD_坡高",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-18",
+      "from": "A1",
+      "to": "FLD_坡度",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-19",
+      "from": "A1",
+      "to": "FLD_邊坡面寬",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-20",
+      "from": "A1",
+      "to": "FLD_坡型",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-21",
+      "from": "A2",
+      "to": "FLD_岩性",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-22",
+      "from": "A3",
+      "to": "FLD_植被覆蓋",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-23",
+      "from": "A3",
+      "to": "FLD_地下水",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-24",
+      "from": "A3",
+      "to": "FLD_排洩水管",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-25",
+      "from": "B1",
+      "to": "FLD_天氣",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-26",
+      "from": "B1",
+      "to": "FLD_降雨",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-27",
+      "from": "C1",
+      "to": "FLD_以往災害",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-28",
+      "from": "C1",
+      "to": "FLD_鄰近災害",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-29",
+      "from": "C2",
+      "to": "FLD_崩落物料",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-30",
+      "from": "C3",
+      "to": "FLD_交通量",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-31",
+      "from": "C4",
+      "to": "FLD_道路寬度",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-32",
+      "from": "C5",
+      "to": "FLD_聯外",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-33",
+      "from": "D1",
+      "to": "FLD_監測系統",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-34",
+      "from": "D1",
+      "to": "FLD_設施檢查",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-35",
+      "from": "D1",
+      "to": "FLD_圖片",
+      "relation": "measured_by",
+      "type": "由欄位量測"
+    },
+    {
+      "id": "rhrs-edge-36",
+      "from": "FLD_地質類型",
+      "to": "F_A31",
+      "relation": "sourced_from",
+      "type": "來源表單"
+    },
+    {
+      "id": "rhrs-edge-37",
+      "from": "FLD_坡高",
+      "to": "F_A31",
+      "relation": "sourced_from",
+      "type": "來源表單"
+    },
+    {
+      "id": "rhrs-edge-38",
+      "from": "FLD_以往災害",
+      "to": "F_A31",
+      "relation": "sourced_from",
+      "type": "來源表單"
+    },
+    {
+      "id": "rhrs-edge-39",
+      "from": "FLD_設施檢查",
+      "to": "F_A34",
+      "relation": "sourced_from",
+      "type": "來源表單"
+    },
+    {
+      "id": "rhrs-edge-40",
+      "from": "FLD_設施檢查",
+      "to": "F_A35",
+      "relation": "sourced_from",
+      "type": "來源表單"
+    },
+    {
+      "id": "rhrs-edge-41",
+      "from": "FLD_崩落物料",
+      "to": "F_A310",
+      "relation": "sourced_from",
+      "type": "來源表單"
+    },
+    {
+      "id": "rhrs-edge-42",
+      "from": "FLD_圖片",
+      "to": "F_A310",
+      "relation": "sourced_from",
+      "type": "來源表單"
+    }
+  ],
+  "sourceFiles": {
+    "graph": "台2線70k+000~70k+350_知識圖譜.json",
+    "formSchema": "台2線70k+000~70k+350_表單架構.json",
+    "pdfs": [
+      "04_台2線70k+000~70k+350.pdf",
+      "18616_台2線易致災.pdf"
+    ]
+  }
+}
