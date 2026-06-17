@@ -89,6 +89,7 @@ const graph = ref<RhrsGraph>({
   nodes: [],
   edges: [],
 })
+const demoBuildLabel = 'Demo build 2026-06-17'
 const selectedNodeId = ref('')
 const searchQuery = ref('')
 const loadError = ref('')
@@ -574,6 +575,7 @@ onMounted(async () => {
       <div class="title-stack">
         <span>RHRS Demo</span>
         <h1>{{ graph.title }}</h1>
+        <small>{{ demoBuildLabel }}</small>
       </div>
 
       <div class="formula-strip" aria-label="風險公式">

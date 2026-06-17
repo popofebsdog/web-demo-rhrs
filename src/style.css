@@ -87,6 +87,14 @@ a {
   letter-spacing: 0;
 }
 
+.title-stack small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .formula-strip {
   min-width: 0;
   padding: 10px 12px;
