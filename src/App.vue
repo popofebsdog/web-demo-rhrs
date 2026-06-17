@@ -118,24 +118,6 @@ const photoAnnotations = [
   { label: '道路暴露', x: 4, y: 65, width: 38, height: 24 },
 ]
 
-const interpretationPathNodeIds = [
-  'EVENT',
-  'A',
-  'A1',
-  'FLD_坡度',
-  'A2',
-  'FLD_岩性',
-  'A3',
-  'FLD_地下水',
-  'C',
-  'C2',
-  'FLD_崩落物料',
-  'D',
-  'D1',
-  'FLD_設施檢查',
-  'RISK',
-]
-
 const thinkingSteps = [
   '辨識照片中的高陡裸露岩面、風化岩層與坡面濕痕。',
   '將影像線索映射到 A 環境因子、B 觸發、C 後果暴露、D 防護折減。',
@@ -157,10 +139,16 @@ const selectedNode = computed(() => {
   return nodeById.value.get(selectedNodeId.value) ?? graph.value.nodes[0]
 })
 
-const activePathNodeIds = computed(() => new Set(interpretationPathNodeIds.slice(0, pathPlaybackStep.value)))
+const interpretationPathNodeIds = computed(() => {
+  const nodeIds = graph.value.nodes.map((node) => node.id)
+  return [...nodeIds.filter((id) => id !== 'RISK'), 'RISK']
+})
+
+const activePathNodeIds = computed(() => new Set(interpretationPathNodeIds.value.slice(0, pathPlaybackStep.value)))
 
 const currentPathNode = computed(() => {
-  const currentId = interpretationPathNodeIds[Math.max(0, Math.min(pathPlaybackStep.value - 1, interpretationPathNodeIds.length - 1))]
+  const path = interpretationPathNodeIds.value
+  const currentId = path[Math.max(0, Math.min(pathPlaybackStep.value - 1, path.length - 1))]
   return nodeById.value.get(currentId)
 })
 
@@ -401,12 +389,15 @@ function selectNode(nodeId: string) {
 }
 
 function openInterpretation() {
+  stopPathPlayback()
   activeNav.value = 'interpretation'
   isInterpretationOpen.value = true
   hasInterpretedPhoto.value = false
+  pathPlaybackStep.value = 0
 }
 
 function closeInterpretation() {
+  stopPathPlayback()
   isInterpretationOpen.value = false
 }
 
@@ -428,22 +419,28 @@ function stopPathPlayback() {
 
 function startInterpretationResult() {
   stopPathPlayback()
+  const path = interpretationPathNodeIds.value
+  if (!path.length) {
+    return
+  }
+
   activeNav.value = 'interpretation'
   isInterpretationOpen.value = true
-  hasInterpretedPhoto.value = true
+  hasInterpretedPhoto.value = false
   highlightedLayer.value = null
   pathPlaybackStep.value = 1
-  selectedNodeId.value = interpretationPathNodeIds[0]
+  selectedNodeId.value = path[0]
 
   pathPlaybackTimer.value = window.setInterval(() => {
-    if (pathPlaybackStep.value >= interpretationPathNodeIds.length) {
+    if (pathPlaybackStep.value >= path.length) {
       stopPathPlayback()
+      hasInterpretedPhoto.value = true
       selectedNodeId.value = 'RISK'
       return
     }
     pathPlaybackStep.value += 1
-    selectedNodeId.value = interpretationPathNodeIds[pathPlaybackStep.value - 1]
-  }, 650)
+    selectedNodeId.value = path[pathPlaybackStep.value - 1]
+  }, 220)
 }
 
 function toggleLayer(layer: RhrsLayer) {
@@ -827,11 +824,14 @@ onMounted(async () => {
           </section>
 
           <section class="thinking-panel">
-            <span>{{ hasInterpretedPhoto ? '判勢結果' : '思考流程' }}</span>
+            <span>{{ hasInterpretedPhoto ? '判勢結果' : pathPlaybackStep > 0 ? '圖譜思考中' : '思考流程' }}</span>
             <h3>{{ hasInterpretedPhoto ? '疑似雨後邊坡落石與排水異常風險' : '照片線索 → RHRS 圖譜 → 殘餘風險' }}</h3>
-            <ol v-if="!hasInterpretedPhoto">
+            <ol v-if="!hasInterpretedPhoto && pathPlaybackStep === 0">
               <li v-for="step in thinkingSteps" :key="step">{{ step }}</li>
             </ol>
+            <p v-else-if="!hasInterpretedPhoto" class="judgment-summary">
+              正在依序高亮全部 {{ interpretationPathNodeIds.length }} 個圖譜節點；完成後才會顯示照片匡選與判識結果。
+            </p>
             <p v-else class="judgment-summary">標註框已顯示影像判讀位置；主畫面圖譜正在高亮 RHRS 判釋路徑。</p>
             <div v-if="hasInterpretedPhoto" class="finding-list">
               <button v-for="item in workflowExtractedFields" :key="`${item.group}-${item.field}`" type="button">
@@ -847,7 +847,8 @@ onMounted(async () => {
             </div>
             <div class="modal-actions">
               <button type="button" class="secondary-action" @click="closeInterpretation">取消</button>
-              <button v-if="!hasInterpretedPhoto" type="button" class="primary-action" @click="startInterpretationResult">開始判勢</button>
+              <button v-if="!hasInterpretedPhoto && pathPlaybackStep === 0" type="button" class="primary-action" @click="startInterpretationResult">開始判勢</button>
+              <button v-else-if="!hasInterpretedPhoto" type="button" class="primary-action" disabled>圖譜思考中</button>
               <button v-else type="button" class="primary-action" @click="openFormOutput">產生建議表單</button>
             </div>
           </section>
