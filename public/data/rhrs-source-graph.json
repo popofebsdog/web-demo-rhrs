@@ -1,11 +1,11 @@
 {
   "graph_說明": "RHRS易致災因果知識圖譜。nodes為實體，edges為帶語意關係。relation類型：contains(層級包含)、triggers(觸發×)、amplifies(放大→)、mitigates(折減÷)、measured_by(由表單欄位量測)、sourced_from(來源表單)。",
-  "風險公式": "殘餘風險 = (A 潛勢 × B 觸發) × C 後果暴露 ÷ D 防護",
+  "風險公式": "殘餘風險 = (A 環境因子 × B 觸發) × C 後果暴露 ÷ D 防護",
   "nodes": [
     { "id": "RISK", "label": "殘餘風險", "type": "outcome" },
     { "id": "EVENT", "label": "邊坡失穩事件", "type": "event" },
 
-    { "id": "A", "label": "邊坡本體潛勢條件", "type": "factor_group", "role": "潛勢(內在條件)", "對應": "脆弱度" },
+    { "id": "A", "label": "邊坡本體環境條件", "type": "factor_group", "role": "環境因子(內在條件)", "對應": "脆弱度" },
     { "id": "B", "label": "氣象誘發因子", "type": "factor_group", "role": "觸發(外在扳機)", "對應": "觸發條件" },
     { "id": "C", "label": "歷史規模與交通暴露", "type": "factor_group", "role": "後果(放大器)", "對應": "發生率×暴露度" },
     { "id": "D", "label": "現有防護設施加權", "type": "factor_group", "role": "折減(負回饋)", "對應": "風險折減" },
@@ -48,8 +48,8 @@
     { "id": "FLD_圖片", "label": "現場記錄圖片", "type": "field" }
   ],
   "edges": [
-    { "from": "A", "to": "EVENT", "relation": "triggers", "operator": "×", "note": "A潛勢與B觸發須同時成立才失穩" },
-    { "from": "B", "to": "EVENT", "relation": "triggers", "operator": "×", "note": "豪雨扣下扳機，把A潛能轉為運動" },
+    { "from": "A", "to": "EVENT", "relation": "triggers", "operator": "×", "note": "A環境因子與B觸發須同時成立才失穩" },
+    { "from": "B", "to": "EVENT", "relation": "triggers", "operator": "×", "note": "豪雨扣下扳機，使A環境脆弱條件轉為實際失穩運動" },
     { "from": "EVENT", "to": "C", "relation": "amplifies", "operator": "→", "note": "事件發生後由C決定後果規模" },
     { "from": "C", "to": "RISK", "relation": "amplifies", "operator": "×" },
     { "from": "D", "to": "RISK", "relation": "mitigates", "operator": "÷", "note": "防護工程折減殘餘風險，不改變A地質本體" },

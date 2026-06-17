@@ -70,7 +70,7 @@ const layerMeta: Record<RhrsLayer, LayerMeta> = {
   2: {
     title: 'A/B/C/D 因果因子',
     shortTitle: '因果因子',
-    description: '潛勢、觸發、後果暴露與防護折減',
+    description: '環境因子、觸發、後果暴露與防護折減',
     stroke: '#6f5a16',
     fill: '#f6edcf',
   },
@@ -105,8 +105,8 @@ const isPanning = ref(false)
 const panStart = ref({ x: 0, y: 0, originX: 0, originY: 0 })
 
 const workflowExtractedFields = [
-  { group: 'A 潛勢', field: '岩性 / 坡度 / 裸露岩面', value: '可見高陡岩坡與風化裸露面' },
-  { group: 'A 潛勢', field: '湧水 / 排水 / 坡面乾濕', value: '坡面濕痕與排水管位置可辨識' },
+  { group: 'A 環境因子', field: '岩性 / 坡度 / 裸露岩面', value: '可見高陡岩坡與風化裸露面' },
+  { group: 'A 環境因子', field: '湧水 / 排水 / 坡面乾濕', value: '坡面濕痕與排水管位置可辨識' },
   { group: 'C 後果暴露', field: '落石尺寸 / 道路寬度 / 交通暴露', value: '坡腳落石鄰近車道' },
   { group: 'D 防護', field: '護欄 / 排水設施 / 防護成效', value: '現有設施可折減但仍需評估' },
 ]
@@ -138,14 +138,14 @@ const interpretationPathNodeIds = [
 
 const thinkingSteps = [
   '辨識照片中的高陡裸露岩面、風化岩層與坡面濕痕。',
-  '將影像線索映射到 A 潛勢、B 觸發、C 後果暴露、D 防護折減。',
+  '將影像線索映射到 A 環境因子、B 觸發、C 後果暴露、D 防護折減。',
   '沿 RHRS 圖譜追溯量測欄位與來源表單。',
   '套用殘餘風險公式產出判勢結果與建議表單草稿。',
 ]
 
 const suggestedFormRows = [
-  { category: 'A 潛勢', field: '岩性 / 坡度 / 坡型', value: '高陡岩坡、裸露岩面，坡面風化與局部土砂裸露明顯。', risk: '潛勢偏高' },
-  { category: 'A 潛勢', field: '植被覆蓋 / 湧水 / 排水', value: '坡面可見濕痕與排水管，局部植被覆蓋不足。', risk: '需追蹤' },
+  { category: 'A 環境因子', field: '岩性 / 坡度 / 坡型', value: '高陡岩坡、裸露岩面，坡面風化與局部土砂裸露明顯。', risk: '環境風險偏高' },
+  { category: 'A 環境因子', field: '植被覆蓋 / 湧水 / 排水', value: '坡面可見濕痕與排水管，局部植被覆蓋不足。', risk: '需追蹤' },
   { category: 'B 觸發', field: '天氣 / 坡面乾濕', value: '照片呈現雨後潮濕坡面，需結合近期降雨量。', risk: '觸發條件成立時升高' },
   { category: 'C 後果暴露', field: '落石尺寸 / 道路寬度', value: '坡腳落石堆積鄰近車道，通行車輛可能受影響。', risk: '暴露偏高' },
   { category: 'D 防護', field: '護欄 / 排水設施 / 監測', value: '有道路護欄與排水設施，但未見完整落石防護或監測資訊。', risk: '折減有限' },
@@ -341,7 +341,7 @@ const sourceLinks = computed(() => {
 
 const laneGuides = computed(() => {
   const labels: Record<string, string> = {
-    A: 'A 潛勢',
+    A: 'A 環境因子',
     B: 'B 觸發',
     C: 'C 後果暴露',
     D: 'D 防護折減',
@@ -581,7 +581,7 @@ onMounted(async () => {
 
       <div class="formula-strip" aria-label="風險公式">
         <span>殘餘風險公式</span>
-        <strong>{{ graph.formula || '殘餘風險 = (A 潛勢 × B 觸發) × C 後果暴露 ÷ D 防護' }}</strong>
+        <strong>{{ graph.formula || '殘餘風險 = (A 環境因子 × B 觸發) × C 後果暴露 ÷ D 防護' }}</strong>
       </div>
 
       <nav class="product-nav" aria-label="主要功能">
@@ -843,7 +843,7 @@ onMounted(async () => {
             <div v-if="hasInterpretedPhoto" class="risk-output-card compact">
               <span>Output</span>
               <strong>中高風險，建議現地複查</strong>
-              <p>殘餘風險 = (A 潛勢 × B 觸發) × C 後果暴露 ÷ D 防護</p>
+              <p>殘餘風險 = (A 環境因子 × B 觸發) × C 後果暴露 ÷ D 防護</p>
             </div>
             <div class="modal-actions">
               <button type="button" class="secondary-action" @click="closeInterpretation">取消</button>
@@ -884,7 +884,7 @@ onMounted(async () => {
           <div class="risk-output-card">
             <span>Output</span>
             <strong>殘餘風險結果</strong>
-            <p>殘餘風險 = (A 潛勢 × B 觸發) × C 後果暴露 ÷ D 防護</p>
+            <p>殘餘風險 = (A 環境因子 × B 觸發) × C 後果暴露 ÷ D 防護</p>
             <div>
               <span>目前判定</span>
               <strong>中高風險，建議現地複查</strong>

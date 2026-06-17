@@ -1,7 +1,7 @@
 {
   "title": "RHRS 易致災因果知識圖譜",
   "description": "RHRS易致災因果知識圖譜。nodes為實體，edges為帶語意關係。relation類型：contains(層級包含)、triggers(觸發×)、amplifies(放大→)、mitigates(折減÷)、measured_by(由表單欄位量測)、sourced_from(來源表單)。",
-  "formula": "殘餘風險 = (A 潛勢 × B 觸發) × C 後果暴露 ÷ D 防護",
+  "formula": "殘餘風險 = (A 環境因子 × B 觸發) × C 後果暴露 ÷ D 防護",
   "formSchemaSummary": "以RHRS易致災評估因子(A/B/C/D)為因果分層骨架，對應四張現場檢測表單之所有欄位。value一律留空，供填寫；options列出表單可勾選項。",
   "rootNodeId": "RISK",
   "nodes": [
@@ -27,13 +27,13 @@
     },
     {
       "id": "A",
-      "label": "邊坡本體潛勢條件",
+      "label": "邊坡本體環境條件",
       "type": "factor_group",
       "typeLabel": "因果群組",
       "layer": 2,
-      "role": "潛勢(內在條件)",
-      "summary": "潛勢(內在條件)；對應：脆弱度",
-      "originalText": "{\n  \"id\": \"A\",\n  \"label\": \"邊坡本體潛勢條件\",\n  \"type\": \"factor_group\",\n  \"role\": \"潛勢(內在條件)\",\n  \"對應\": \"脆弱度\"\n}",
+      "role": "環境因子(內在條件)",
+      "summary": "環境因子(內在條件)；對應：脆弱度",
+      "originalText": "{\n  \"id\": \"A\",\n  \"label\": \"邊坡本體環境條件\",\n  \"type\": \"factor_group\",\n  \"role\": \"環境因子(內在條件)\",\n  \"對應\": \"脆弱度\"\n}",
       "sourcePdf": "台2線70k+000~70k+350_知識圖譜.json"
     },
     {
@@ -422,7 +422,7 @@
       "relation": "triggers",
       "type": "觸發 ×",
       "operator": "×",
-      "note": "A潛勢與B觸發須同時成立才失穩"
+      "note": "A環境因子與B觸發須同時成立才失穩"
     },
     {
       "id": "rhrs-edge-2",
@@ -431,7 +431,7 @@
       "relation": "triggers",
       "type": "觸發 ×",
       "operator": "×",
-      "note": "豪雨扣下扳機，把A潛能轉為運動"
+      "note": "豪雨扣下扳機，使A環境脆弱條件轉為實際失穩運動"
     },
     {
       "id": "rhrs-edge-3",
